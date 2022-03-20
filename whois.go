@@ -139,6 +139,9 @@ func (c *Client) Whois(domain string, servers ...string) (result string, err err
 	}
 
 	refServer := getServer(result)
+	if strings.HasSuffix(refServer, "/") {
+		refServer = strings.TrimRight(refServer, "/")
+	}
 	if refServer == "" || refServer == server {
 		return
 	}
